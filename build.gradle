@@ -20,6 +20,10 @@ allprojects {
         google()
         jcenter()
     }
+
+    project.ext {
+        mockitoVersion = "2.12.0"
+    }
 }
 
 task clean(type: Delete) {
