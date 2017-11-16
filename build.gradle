@@ -22,6 +22,11 @@ allprojects {
     }
 
     project.ext {
+        compileSdkVersion = 26
+        minSdkVersion = 17
+        targetSdkVersion = 26
+
+        supportLibraryVersion = "26.1.0"
         mockitoVersion = "2.12.0"
     }
 }
