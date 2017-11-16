@@ -5,7 +5,7 @@ public interface WeatherRepository {
 
     void getForecast(String location, DataRequestCallback callback);
 
-    void getForecastDetails(String data, DataRequestCallback callback);
+    void getForecastDetails(int date, DataRequestCallback callback);
 
     void setRecentSearchLocation(String location);
 
