@@ -22,9 +22,10 @@ android {
 }
 
 dependencies {
-    compile project(':domain')
+    implementation project(':domain')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation 'com.google.code.gson:gson:' + project.ext.gsonVersion
     implementation 'com.android.support:appcompat-v7:' + project.ext.supportLibraryVersion
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:' + project.ext.mockitoVersion
