@@ -3,13 +3,13 @@ package nyc.insidout.weathervane.domain.model;
 
 public class Forecast {
 
-    public final int date;
-    public final int tempMax;
-    public final int tempMin;
+    public final long date;
+    public final double tempMax;
+    public final double tempMin;
     public final int forecastId;
     public final String desc;
 
-    public Forecast(final int date, final int tempMax, final int tempMin, final int forecastId,
+    public Forecast(final long date, final double tempMax, final double tempMin, final int forecastId,
                     final String desc){
         this.date = date;
         this.tempMax = tempMax;

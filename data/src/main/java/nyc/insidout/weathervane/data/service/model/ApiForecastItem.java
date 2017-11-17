@@ -10,7 +10,7 @@ public class ApiForecastItem {
 
     @SerializedName("dt")
     @Expose
-    private Integer date;
+    private Long date;
 
     @SerializedName("temp")
     @Expose
@@ -19,30 +19,36 @@ public class ApiForecastItem {
     @SerializedName("pressure")
     @Expose
     private Double pressure;
+
     @SerializedName("humidity")
     @Expose
     private Integer humidity;
+
     @SerializedName("weather")
     @Expose
-    private List<ApiForecastDescription> descriptions = null;
+    private List<ApiForecastDescription> description = null;
+
     @SerializedName("speed")
     @Expose
     private Double speed;
+
     @SerializedName("deg")
     @Expose
     private Integer deg;
+
     @SerializedName("clouds")
     @Expose
     private Integer clouds;
+
     @SerializedName("rain")
     @Expose
     private Double rain;
 
-    public Integer getDate() {
+    public Long getDate() {
         return date;
     }
 
-    public void setDate(Integer dt) {
+    public void setDate(Long dt) {
         this.date = dt;
     }
 
@@ -70,12 +76,12 @@ public class ApiForecastItem {
         this.humidity = humidity;
     }
 
-    public java.util.List<ApiForecastDescription> getDescriptions() {
-        return descriptions;
+    public java.util.List<ApiForecastDescription> getDescription() {
+        return description;
     }
 
-    public void setDescriptions(List<ApiForecastDescription> descriptions) {
-        this.descriptions = descriptions;
+    public void setDescription(List<ApiForecastDescription> description) {
+        this.description = description;
     }
 
     public Double getSpeed() {
