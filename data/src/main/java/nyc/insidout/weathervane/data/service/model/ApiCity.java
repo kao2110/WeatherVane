@@ -1,4 +1,4 @@
-package nyc.insidout.weathervane.data.model;
+package nyc.insidout.weathervane.data.service.model;
 
 
 import com.google.gson.annotations.Expose;
