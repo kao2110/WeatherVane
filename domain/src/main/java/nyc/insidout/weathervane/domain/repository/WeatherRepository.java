@@ -1,11 +1,14 @@
 package nyc.insidout.weathervane.domain.repository;
 
 
+import nyc.insidout.weathervane.domain.interactor.GetForecastDetailsUseCase;
+import nyc.insidout.weathervane.domain.interactor.GetForecastUseCase;
+
 public interface WeatherRepository {
 
-    void getForecast(String location, DataRequestCallback callback);
+    void getForecast(String location, DataRequestCallback<GetForecastUseCase.RequestResult> callback);
 
-    void getForecastDetails(int date, DataRequestCallback callback);
+    void getForecastDetails(long date, DataRequestCallback<GetForecastDetailsUseCase.RequestResult> callback);
 
     void setRecentSearchLocation(String location);
 
