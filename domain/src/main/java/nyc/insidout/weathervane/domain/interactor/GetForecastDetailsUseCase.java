@@ -36,13 +36,13 @@ public class GetForecastDetailsUseCase implements UseCase<GetForecastDetailsUseC
     * Class used to carry request parameters to GetForecastDetailsUseCase
     */
     public static final class RequestParam implements UseCase.RequestParam{
-        private final int date;
+        private final long date;
 
-        public RequestParam(final int date){
+        public RequestParam(final long date){
             this.date = date;
         }
 
-        public int getDate(){
+        public long getDate(){
             return date;
         }
     }

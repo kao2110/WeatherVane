@@ -31,7 +31,7 @@ public class GetForecastDetailsUseCaseTest {
     ArgumentCaptor<DataRequestCallback<RequestResult>> mDataRequestCallbackArgumentCaptor;
 
     private GetForecastDetailsUseCase mGetForecastDetailsUseCase;
-    private int mDate;
+    private long mDate;
     private RequestParam mParam;
 
     @Before
