@@ -28,13 +28,11 @@ public class WeatherRepositoryImpl implements WeatherRepository {
 
     }
 
-    @Override
-    public void setRecentSearchLocation(String location){
+    private void setRecentSearchLocation(String location){
 
     }
 
-    @Override
-    public String getRecentSearchLocation(){
+    private String getRecentSearchLocation(){
         return null;
     }
 }

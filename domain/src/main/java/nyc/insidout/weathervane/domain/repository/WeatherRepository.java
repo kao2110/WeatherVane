@@ -10,10 +10,6 @@ public interface WeatherRepository {
 
     void getForecastDetails(long date, DataRequestCallback<GetForecastDetailsUseCase.RequestResult> callback);
 
-    void setRecentSearchLocation(String location);
-
-    String getRecentSearchLocation();
-
     /* Interface used to communicate results for data requests made to repository */
     public interface DataRequestCallback<R>{
 
