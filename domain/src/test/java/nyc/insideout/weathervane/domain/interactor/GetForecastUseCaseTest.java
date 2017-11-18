@@ -10,13 +10,11 @@ import org.mockito.MockitoAnnotations;
 import java.util.Arrays;
 import java.util.List;
 
-import nyc.insidout.weathervane.domain.interactor.GetForecastUseCase;
-import nyc.insidout.weathervane.domain.interactor.GetForecastUseCase.RequestParam;
-import nyc.insidout.weathervane.domain.interactor.GetForecastUseCase.RequestResult;
-import nyc.insidout.weathervane.domain.interactor.UseCase;
-import nyc.insidout.weathervane.domain.model.Forecast;
-import nyc.insidout.weathervane.domain.repository.WeatherRepository;
-import nyc.insidout.weathervane.domain.repository.WeatherRepository.DataRequestCallback;
+import nyc.insideout.weathervane.domain.interactor.GetForecastUseCase.RequestParam;
+import nyc.insideout.weathervane.domain.interactor.GetForecastUseCase.RequestResult;
+import nyc.insideout.weathervane.domain.model.Forecast;
+import nyc.insideout.weathervane.domain.repository.WeatherRepository;
+import nyc.insideout.weathervane.domain.repository.WeatherRepository.DataRequestCallback;
 
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;

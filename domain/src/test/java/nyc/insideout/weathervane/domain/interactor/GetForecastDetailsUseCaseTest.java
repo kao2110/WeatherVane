@@ -7,13 +7,11 @@ import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import nyc.insidout.weathervane.domain.interactor.GetForecastDetailsUseCase;
-import nyc.insidout.weathervane.domain.interactor.GetForecastDetailsUseCase.RequestParam;
-import nyc.insidout.weathervane.domain.interactor.GetForecastDetailsUseCase.RequestResult;
-import nyc.insidout.weathervane.domain.interactor.UseCase;
-import nyc.insidout.weathervane.domain.model.ForecastDetail;
-import nyc.insidout.weathervane.domain.repository.WeatherRepository;
-import nyc.insidout.weathervane.domain.repository.WeatherRepository.DataRequestCallback;
+import nyc.insideout.weathervane.domain.interactor.GetForecastDetailsUseCase.RequestParam;
+import nyc.insideout.weathervane.domain.interactor.GetForecastDetailsUseCase.RequestResult;
+import nyc.insideout.weathervane.domain.model.ForecastDetail;
+import nyc.insideout.weathervane.domain.repository.WeatherRepository;
+import nyc.insideout.weathervane.domain.repository.WeatherRepository.DataRequestCallback;
 
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
