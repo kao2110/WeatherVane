@@ -3,6 +3,13 @@ apply plugin: 'com.android.library'
 android {
     compileSdkVersion project.ext.compileSdkVersion
 
+    //necessary for Robolectric unit tests
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
     defaultConfig {
         minSdkVersion project.ext.minSdkVersion
         targetSdkVersion project.ext.targetSdkVersion
@@ -18,7 +25,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
@@ -29,4 +35,5 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:' + project.ext.supportLibraryVersion
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:' + project.ext.mockitoVersion
+    testImplementation 'org.robolectric:robolectric:' + project.ext.robolectricVersion
 }

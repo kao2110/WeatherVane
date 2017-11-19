@@ -29,6 +29,7 @@ allprojects {
         supportLibraryVersion = "26.1.0"
         gsonVersion = "2.8.1"
         mockitoVersion = "2.12.0"
+        robolectricVersion = "3.5.1"
     }
 }
 
