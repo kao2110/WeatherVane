@@ -1,7 +1,9 @@
-package nyc.insideout.weathervane;
+package nyc.insideout.weathervane.ui.forecast.list;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import nyc.insideout.weathervane.R;
 
 public class ForecastActivity extends AppCompatActivity {
 
