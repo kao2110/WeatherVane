@@ -21,28 +21,40 @@ public class WeatherRepositoryImpl implements WeatherRepository {
     private WeatherDataMapper mWeatherDataMapper;
     private ArrayMap<Long, WeatherData> mWeatherDataCache;
 
-    public WeatherRepositoryImpl(WeatherService weatherService,
-                                 WeatherPreferences weatherPreferences,
+    public WeatherRepositoryImpl(WeatherService weatherService, WeatherPreferences weatherPreferences,
                                  WeatherDataMapper weatherDataMapper){
         mWeatherService = weatherService;
         mWeatherPreferences = weatherPreferences;
         mWeatherDataMapper = weatherDataMapper;
     }
 
+    /*
+    * Method to retrieve list of Forecast data from either local cache or remote service.
+    */
     @Override
-    public void getForecast(final String location, final DataRequestCallback<RequestResult> callback){
+    public void getForecast(String location, final DataRequestCallback<RequestResult> callback){
+        final String lastLocation;
 
+        // if location value is null then retrieve the last known search location from weather preferences
+        if(location == null){
+            lastLocation = mWeatherPreferences.getLastSearchLocation();
+        }else{
+            lastLocation = location;
+        }
+
+        // if in-memory cache has data then return those values, otherwise make a call to service
         if(mWeatherDataCache != null){
             RequestResult requestResult =
-                    new RequestResult(location, mWeatherDataMapper.cacheToDomain(mWeatherDataCache.values()));
+                    new RequestResult(lastLocation, mWeatherDataMapper.cacheToDomain(mWeatherDataCache.values()));
             callback.onDataLoaded(requestResult);
-        }else{
-            mWeatherService.fetchForecast(location, new WeatherService.WeatherServiceCallback<ApiWeatherData>() {
+        }
+        else{
+            mWeatherService.fetchForecast(lastLocation, new WeatherService.WeatherServiceCallback<ApiWeatherData>() {
                 @Override
                 public void onDataLoaded(ApiWeatherData result) {
                     mWeatherDataCache = mWeatherDataMapper.apiToCache(result);
                     RequestResult requestResult =
-                            new RequestResult(location, mWeatherDataMapper.cacheToDomain(mWeatherDataCache.values()));
+                            new RequestResult(lastLocation, mWeatherDataMapper.cacheToDomain(mWeatherDataCache.values()));
                     callback.onDataLoaded(requestResult);
                 }
 
@@ -54,6 +66,9 @@ public class WeatherRepositoryImpl implements WeatherRepository {
         }
     }
 
+    /*
+    * Method to retrieve forecast details from cached items.
+    */
     @Override
     public void getForecastDetails(long date, DataRequestCallback<GetForecastDetailsUseCase.RequestResult> callback){
         if(mWeatherDataCache != null){
