@@ -29,10 +29,14 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
     // Dependencies for Dagger 2
-    compile 'com.google.dagger:dagger:' + project.ext.daggerVersion
-    compile 'com.google.dagger:dagger-android-support:' + project.ext.daggerVersion
+    implementation 'com.google.dagger:dagger:' + project.ext.daggerVersion
+    implementation 'com.google.dagger:dagger-android-support:' + project.ext.daggerVersion
     annotationProcessor 'com.google.dagger:dagger-compiler:' + project.ext.daggerVersion
     annotationProcessor 'com.google.dagger:dagger-android-processor:' + project.ext.daggerVersion
+
+    // LeakCanary Dependencies
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:' + project.ext.leakCanaryVersion
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:' + project.ext.leakCanaryVersion
 
     // testing dependencies
     testImplementation 'junit:junit:4.12'
