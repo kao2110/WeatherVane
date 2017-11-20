@@ -1,14 +1,18 @@
 package nyc.insideout.weathervane;
 
 
-import android.app.Application;
 import android.os.StrictMode;
 
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
+import dagger.android.AndroidInjector;
+import dagger.android.DaggerApplication;
+import nyc.insideout.weathervane.dagger.component.DaggerWeatherVaneAppComponent;
+import nyc.insideout.weathervane.dagger.component.WeatherVaneAppComponent;
 
-public class WeatherVaneApplication extends Application {
+
+public class WeatherVaneApplication extends DaggerApplication{
 
     @Override public void onCreate() {
 
@@ -16,6 +20,14 @@ public class WeatherVaneApplication extends Application {
         if(BuildConfig.DEBUG){ setupStrictMode();}
         super.onCreate();
         setupLeakCanary();
+    }
+
+
+    @Override
+    protected AndroidInjector<? extends DaggerApplication> applicationInjector(){
+        WeatherVaneAppComponent component =  DaggerWeatherVaneAppComponent.builder().application(this).build();
+        component.inject(this);
+        return component;
     }
 
 
