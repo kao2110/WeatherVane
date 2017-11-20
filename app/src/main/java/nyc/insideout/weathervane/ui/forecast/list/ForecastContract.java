@@ -5,9 +5,9 @@ public interface ForecastContract {
 
     public interface Presenter{
 
-        void setup();
+        void start(String location);
 
-        void onSubmitForcastLocation(String location);
+        void onSubmitForecastLocation(String location);
 
         void onForecastItemClicked(long date);
     }
