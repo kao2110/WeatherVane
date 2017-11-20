@@ -1,28 +1,38 @@
 package nyc.insideout.weathervane.ui.forecast.list;
 
 
+import java.util.List;
+
+import nyc.insideout.weathervane.ui.model.ForecastViewModel;
+
 public interface ForecastContract {
 
-    public interface Presenter{
+    interface Presenter{
 
         void start(String location);
 
         void onSubmitForecastLocation(String location);
 
         void onForecastItemClicked(long date);
+
+        void onViewActive();
+
+        void onViewInactive();
+
+        void onViewDestroyed();
     }
 
-    public interface View{
+    interface View{
 
-        void showProgress();
+        void showProgressIndicator();
 
-        void hideProgress();
+        void hideProgressIndicator();
 
         void enableLocationEntry();
 
         void disableLocationEntry();
 
-        void showForecastList();
+        void showForecastList(List<ForecastViewModel> forecastItems);
 
         void showForecastDetails(long data);
     }
