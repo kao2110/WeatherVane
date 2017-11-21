@@ -1,7 +1,11 @@
 package nyc.insideout.weathervane.data.service;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import nyc.insideout.weathervane.data.service.model.ApiWeatherData;
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 /**
@@ -11,6 +15,7 @@ import retrofit2.Retrofit;
 public class WeatherServiceImpl implements WeatherService<ApiWeatherData> {
 
     Retrofit mRetroFit;
+    private static final Logger LOGGER = Logger.getLogger(WeatherServiceImpl.class.getName());
 
     // With more time the user would be able to set these variables via a Preferences Activity.
     // their values would be stored/retrieved from the WeatherPreferencesImpl class
@@ -39,5 +44,28 @@ public class WeatherServiceImpl implements WeatherService<ApiWeatherData> {
 
     private void queryForecastData(Call<ApiWeatherData> forecastQuery, final WeatherServiceCallback<ApiWeatherData> callback){
 
+        try{
+            Response<ApiWeatherData> response = forecastQuery.execute();
+            if(response.isSuccessful()){
+                LOGGER.log(Level.INFO, "API Response successful");
+                ApiWeatherData apiWeatherData = response.body();
+                if(apiWeatherData == null) {
+                    LOGGER.log(Level.WARNING, "API Response is Null");
+                    Throwable throwable = new Throwable("Error Retrieving Forecast Data");
+                    callback.onError(throwable);
+                    return;
+                }
+                LOGGER.log(Level.INFO, "Data for " + apiWeatherData.getApiForecastList().size() + " downloaded");
+                callback.onDataLoaded(apiWeatherData);
+                return;
+            }
+            LOGGER.log(Level.SEVERE, "API Response Fail");
+            Throwable throwable = new Throwable(response.message());
+            callback.onError(throwable);
+
+        }catch (Exception e){
+            LOGGER.log(Level.SEVERE, e.getMessage());
+            callback.onError(e);
+        }
     }
 }

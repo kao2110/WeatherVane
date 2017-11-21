@@ -46,7 +46,9 @@ public class WeatherVaneApplication extends DaggerApplication{
                 .penaltyDeath()
                 .build());
         StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-                .detectAll()
+                .detectActivityLeaks()
+                .detectLeakedClosableObjects()
+                .detectLeakedRegistrationObjects()
                 .penaltyLog()
                 .penaltyDeath()
                 .build());

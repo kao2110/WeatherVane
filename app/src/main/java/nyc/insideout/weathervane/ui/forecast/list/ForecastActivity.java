@@ -20,7 +20,7 @@ public class ForecastActivity extends AppCompatActivity implements ForecastContr
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forecast);
-
+        mPresenter.start(null);
     }
 
     @Override
