@@ -26,6 +26,7 @@ allprojects {
         minSdkVersion = 17
         targetSdkVersion = 26
 
+        retrofitVersion = "2.3.0"
         daggerVersion = "2.13"
         supportLibraryVersion = "26.1.0"
         gsonVersion = "2.8.1"

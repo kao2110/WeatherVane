@@ -13,6 +13,7 @@ import nyc.insideout.weathervane.WeatherVaneApplication;
 import nyc.insideout.weathervane.dagger.DataModule;
 import nyc.insideout.weathervane.dagger.ExecutorModule;
 import nyc.insideout.weathervane.dagger.ForecastActivityBindingModule;
+import nyc.insideout.weathervane.dagger.NetworkModule;
 import nyc.insideout.weathervane.dagger.UseCaseModule;
 import nyc.insideout.weathervane.dagger.WeatherVaneAppModule;
 
@@ -26,6 +27,7 @@ import nyc.insideout.weathervane.dagger.WeatherVaneAppModule;
         ExecutorModule.class,
         UseCaseModule.class,
         WeatherVaneAppModule.class,
+        NetworkModule.class,
         AndroidSupportInjectionModule.class})
 public interface WeatherVaneAppComponent extends AndroidInjector<WeatherVaneApplication>{
 

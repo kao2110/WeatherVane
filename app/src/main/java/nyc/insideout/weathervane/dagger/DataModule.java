@@ -14,6 +14,7 @@ import nyc.insideout.weathervane.data.preferences.WeatherPreferencesImpl;
 import nyc.insideout.weathervane.data.service.WeatherService;
 import nyc.insideout.weathervane.data.service.WeatherServiceImpl;
 import nyc.insideout.weathervane.domain.repository.WeatherRepository;
+import retrofit2.Retrofit;
 
 @Module
 public class DataModule {
@@ -32,8 +33,8 @@ public class DataModule {
 
     @Singleton
     @Provides
-    WeatherService provideWeatherService(){
-        return new WeatherServiceImpl();
+    WeatherService provideWeatherService(Retrofit retrofit){
+        return new WeatherServiceImpl(retrofit);
     }
 
     @Singleton

@@ -31,8 +31,14 @@ dependencies {
     implementation project(':domain')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.google.code.gson:gson:' + project.ext.gsonVersion
     implementation 'com.android.support:appcompat-v7:' + project.ext.supportLibraryVersion
+
+    // Retrofit dependencies
+    implementation 'com.google.code.gson:gson:' + project.ext.gsonVersion
+    implementation 'com.squareup.retrofit2:retrofit:' + project.ext.retrofitVersion
+    implementation 'com.squareup.retrofit2:converter-gson:' + project.ext.retrofitVersion
+
+    // test dependencies
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:' + project.ext.mockitoVersion
     testImplementation 'org.robolectric:robolectric:' + project.ext.robolectricVersion
