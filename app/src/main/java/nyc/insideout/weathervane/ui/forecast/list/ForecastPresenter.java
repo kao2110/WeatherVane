@@ -1,7 +1,11 @@
 package nyc.insideout.weathervane.ui.forecast.list;
 
 
+import android.util.Log;
+
 import java.util.List;
+
+import javax.inject.Inject;
 
 import nyc.insideout.weathervane.domain.interactor.GetForecastUseCase;
 import nyc.insideout.weathervane.domain.model.Forecast;
@@ -16,8 +20,9 @@ public class ForecastPresenter implements ForecastContract.Presenter {
     private GetForecastUseCase mGetForecastUseCase;
     private ForecastDataMapper mDataMapper;
     private String mUiCallbackCacheKey = "";
-    private boolean mViewIsActive = false;
+    private boolean mViewIsActive = true;
 
+    @Inject
     public ForecastPresenter(GetForecastUseCase useCase, UseCaseExecutor useCaseExecutor, ForecastDataMapper dataMapper,
                              ForecastContract.View view){
         mGetForecastUseCase = useCase;
@@ -52,6 +57,8 @@ public class ForecastPresenter implements ForecastContract.Presenter {
 
     @Override
     public void onViewDestroyed() {
+        // view is being destroyed so remove UiCallback created from UseCaseExecuter to prevent
+        // possible memory leak.
         evictUiCallback();
     }
 
@@ -68,6 +75,7 @@ public class ForecastPresenter implements ForecastContract.Presenter {
             public void onComplete(GetForecastUseCase.RequestResult result) {
                 if(mViewIsActive){
                     displayForecastItems(result.getForecastList());
+                    // remove old callback
                     evictUiCallback();
                 }
             }
