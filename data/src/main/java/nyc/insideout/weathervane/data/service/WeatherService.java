@@ -1,9 +1,9 @@
 package nyc.insideout.weathervane.data.service;
 
 
-public interface WeatherService {
+public interface WeatherService<T> {
 
-    void fetchForecast(String location, WeatherServiceCallback callback);
+    void fetchForecast(String location, WeatherServiceCallback<T> callback);
 
     /* Interface used to communicate results for data requests made to WeatherService */
     public interface WeatherServiceCallback<T>{

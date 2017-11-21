@@ -16,7 +16,7 @@ import nyc.insideout.weathervane.domain.repository.WeatherRepository;
 
 public class WeatherRepositoryImpl implements WeatherRepository {
 
-    private WeatherService mWeatherService;
+    private WeatherService<ApiWeatherData> mWeatherService;
     private WeatherPreferences mWeatherPreferences;
     private WeatherDataMapper mWeatherDataMapper;
     private ArrayMap<Long, WeatherData> mWeatherDataCache;
