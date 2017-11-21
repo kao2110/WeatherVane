@@ -4,10 +4,13 @@ import android.support.v4.util.ArrayMap;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 
 import nyc.insideout.weathervane.data.database.model.WeatherData;
 import nyc.insideout.weathervane.data.mapper.WeatherDataMapper;
@@ -79,9 +82,24 @@ public class WeatherRepositoryImplTest {
         weatherServiceCallbackCaptor.getValue().onDataLoaded(apiWeatherData);
 
         // Then on second request data requested from cache
+        doReturn(location).when(weatherPreferences).getLastSearchLocation();
         weatherRepository.getForecast(location, forecastListDataRequestCallback);
         verify(weatherService).fetchForecast(eq(location), any(WeatherService.WeatherServiceCallback.class));
         verify(cache, times(2)).values();
+    }
+
+    @Test
+    public void whenCacheHasDataAndStale_ThenRequestForecastListFromService(){
+        // When forecast data requested from repository first time
+        weatherRepository.getForecast(location, forecastListDataRequestCallback);
+        verify(weatherService).fetchForecast(eq(location), weatherServiceCallbackCaptor.capture());
+        weatherServiceCallbackCaptor.getValue().onDataLoaded(apiWeatherData);
+
+        // Then on second request with new location data requested from service
+        doReturn("New Location").when(weatherPreferences).getLastSearchLocation();
+        weatherRepository.getForecast(location, forecastListDataRequestCallback);
+        verify(weatherService, times(2)).fetchForecast(eq(location), any(WeatherService.WeatherServiceCallback.class));
+        verify(cache).values();
     }
 
     @Test
