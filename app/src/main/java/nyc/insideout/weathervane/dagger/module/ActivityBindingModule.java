@@ -1,7 +1,8 @@
-package nyc.insideout.weathervane.dagger;
+package nyc.insideout.weathervane.dagger.module;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
+import nyc.insideout.weathervane.dagger.ActivityScope;
 import nyc.insideout.weathervane.ui.forecast.detail.ForecastDetailActivity;
 import nyc.insideout.weathervane.ui.forecast.list.ForecastActivity;
 
@@ -12,7 +13,7 @@ import nyc.insideout.weathervane.ui.forecast.list.ForecastActivity;
  */
 
 @Module
-public abstract class ForecastActivityBindingModule {
+public abstract class ActivityBindingModule {
 
 
     @ActivityScope

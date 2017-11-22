@@ -1,18 +1,18 @@
-package nyc.insideout.weathervane.dagger;
-
+package nyc.insideout.weathervane.dagger.module;
 
 import dagger.Module;
 import dagger.Provides;
-import nyc.insideout.weathervane.ui.forecast.detail.ForecastDetailActivity;
-import nyc.insideout.weathervane.ui.forecast.detail.ForecastDetailContract;
-import nyc.insideout.weathervane.ui.forecast.detail.ForecastDetailPresenter;
+import nyc.insideout.weathervane.dagger.ActivityScope;
+import nyc.insideout.weathervane.ui.forecast.list.ForecastActivity;
+import nyc.insideout.weathervane.ui.forecast.list.ForecastContract;
+import nyc.insideout.weathervane.ui.forecast.list.ForecastPresenter;
 import nyc.insideout.weathervane.ui.mapper.DataFormatter;
 import nyc.insideout.weathervane.ui.mapper.DataFormatterImpl;
 import nyc.insideout.weathervane.ui.mapper.ForecastDataMapper;
 import nyc.insideout.weathervane.ui.mapper.ForecastDataMapperImpl;
 
 @Module
-public class ForecastDetailActivityModule {
+public class ForecastActivityModule {
 
     @ActivityScope
     @Provides
@@ -28,13 +28,13 @@ public class ForecastDetailActivityModule {
 
     @ActivityScope
     @Provides
-    ForecastDetailContract.Presenter provideForecastPresenter(ForecastDetailPresenter presenter){
+    ForecastContract.Presenter provideForecastPresenter(ForecastPresenter presenter){
         return presenter;
     }
 
     @ActivityScope
     @Provides
-    ForecastDetailContract.View provideForecastView(ForecastDetailActivity view){
+    ForecastContract.View provideForecastView(ForecastActivity view){
         return view;
     }
 }

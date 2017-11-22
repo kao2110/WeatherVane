@@ -10,19 +10,19 @@ import dagger.Component;
 import dagger.android.AndroidInjector;
 import dagger.android.support.AndroidSupportInjectionModule;
 import nyc.insideout.weathervane.WeatherVaneApplication;
-import nyc.insideout.weathervane.dagger.DataModule;
-import nyc.insideout.weathervane.dagger.ExecutorModule;
-import nyc.insideout.weathervane.dagger.ForecastActivityBindingModule;
-import nyc.insideout.weathervane.dagger.NetworkModule;
-import nyc.insideout.weathervane.dagger.UseCaseModule;
-import nyc.insideout.weathervane.dagger.WeatherVaneAppModule;
+import nyc.insideout.weathervane.dagger.module.DataModule;
+import nyc.insideout.weathervane.dagger.module.ExecutorModule;
+import nyc.insideout.weathervane.dagger.module.ActivityBindingModule;
+import nyc.insideout.weathervane.dagger.module.NetworkModule;
+import nyc.insideout.weathervane.dagger.module.UseCaseModule;
+import nyc.insideout.weathervane.dagger.module.WeatherVaneAppModule;
 
 /**
  * This Dagger Component is responsible for allowing Android Components(i.e. Activities, Services, etc.)
  * to be injected with their declared dependencies.
  */
 @Singleton
-@Component(modules = {ForecastActivityBindingModule.class,
+@Component(modules = {ActivityBindingModule.class,
         DataModule.class,
         ExecutorModule.class,
         UseCaseModule.class,

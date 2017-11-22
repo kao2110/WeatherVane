@@ -1,4 +1,4 @@
-package nyc.insideout.weathervane.dagger;
+package nyc.insideout.weathervane.dagger.module;
 
 import android.app.Application;
 import android.content.Context;
