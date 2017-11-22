@@ -5,6 +5,7 @@ import java.util.List;
 
 import nyc.insideout.weathervane.domain.model.Forecast;
 import nyc.insideout.weathervane.domain.model.ForecastDetail;
+import nyc.insideout.weathervane.ui.model.ForecastDetailViewModel;
 import nyc.insideout.weathervane.ui.model.ForecastViewModel;
 
 /**
@@ -17,5 +18,5 @@ public interface ForecastDataMapper {
 
     List<ForecastViewModel> domainToForecastList(List<Forecast> forecastList);
 
-    ForecastViewModel domainToDetailViewModel(ForecastDetail forecastDetail);
+    ForecastDetailViewModel domainToDetailViewModel(ForecastDetail forecastDetail);
 }

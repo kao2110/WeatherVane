@@ -69,6 +69,10 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         notifyDataSetChanged();
     }
 
+    public long getItemUnixDate(int position){
+        return forecastItems.get(position).dateUnixTime;
+    }
+
     public class ForecastViewHolder extends RecyclerView.ViewHolder{
 
         public ImageView forecastImg;

@@ -1,13 +1,16 @@
 package nyc.insideout.weathervane.ui.forecast.list;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -18,7 +21,11 @@ import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
 import nyc.insideout.weathervane.R;
+import nyc.insideout.weathervane.ui.forecast.detail.ForecastDetailActivity;
 import nyc.insideout.weathervane.ui.model.ForecastViewModel;
+import nyc.insideout.weathervane.ui.util.RecyclerViewTouchListener;
+
+import static nyc.insideout.weathervane.ui.forecast.detail.ForecastDetailActivity.UNIX_DATE_VAL;
 
 public class ForecastActivity extends AppCompatActivity implements ForecastContract.View, SearchView.OnQueryTextListener {
 
@@ -48,6 +55,7 @@ public class ForecastActivity extends AppCompatActivity implements ForecastContr
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new ForecastAdapter(getApplicationContext());
         mRecyclerView.setAdapter(mAdapter);
+        initRecyclerViewTouchListener();
 
         mProgressBar = findViewById(R.id.progress_bar);
         mProgressLabel = findViewById(R.id.progress_label);
@@ -151,7 +159,9 @@ public class ForecastActivity extends AppCompatActivity implements ForecastContr
 
     @Override
     public void showForecastDetails(long data) {
-
+        Intent intent = new Intent(this, ForecastDetailActivity.class);
+        intent.putExtra(UNIX_DATE_VAL, data);
+        startActivity(intent);
     }
 
     @Override
@@ -173,5 +183,22 @@ public class ForecastActivity extends AppCompatActivity implements ForecastContr
     @Override
     public void hideErrorMessage(){
         mErrorText.setVisibility(View.INVISIBLE);
+    }
+
+    private void initRecyclerViewTouchListener(){
+        RecyclerViewTouchListener listener = new RecyclerViewTouchListener(new GestureDetector(this,
+                new GestureDetector.SimpleOnGestureListener(){
+                    @Override
+                    public boolean onSingleTapUp(MotionEvent e){
+                        View child = mRecyclerView.findChildViewUnder(e.getX(), e.getY());
+                        if(child != null){
+                            int position = mRecyclerView.getChildAdapterPosition(child);
+                            long unixDate = mAdapter.getItemUnixDate(position);
+                            mPresenter.onForecastItemClicked(unixDate);
+                        }
+                        return true;
+                    }
+                }));
+        mRecyclerView.addOnItemTouchListener(listener);
     }
 }
