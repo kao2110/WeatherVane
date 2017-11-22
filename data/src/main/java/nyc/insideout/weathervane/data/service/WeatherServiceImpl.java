@@ -32,7 +32,7 @@ public class WeatherServiceImpl implements WeatherService<ApiWeatherData> {
     public void fetchForecast(String location, WeatherServiceCallback<ApiWeatherData> callback){
         Call<ApiWeatherData> apiCall = buildForecastListCall(location);
 
-        queryForecastData(apiCall, callback);
+        queryForecastData(location, apiCall, callback);
 
     }
 
@@ -42,7 +42,8 @@ public class WeatherServiceImpl implements WeatherService<ApiWeatherData> {
         return endpoint.getForecastList(location, UNITS, NUM_DAYS, API_KEY);
     }
 
-    private void queryForecastData(Call<ApiWeatherData> forecastQuery, final WeatherServiceCallback<ApiWeatherData> callback){
+    private void queryForecastData(String location, Call<ApiWeatherData> forecastQuery,
+                                   final WeatherServiceCallback<ApiWeatherData> callback){
 
         try{
             Response<ApiWeatherData> response = forecastQuery.execute();
@@ -60,12 +61,13 @@ public class WeatherServiceImpl implements WeatherService<ApiWeatherData> {
                 return;
             }
             LOGGER.log(Level.SEVERE, "API Response Fail");
-            Throwable throwable = new Throwable(response.message());
+            Throwable throwable = new Throwable("Unable to find Forecast data for: " + location);
             callback.onError(throwable);
 
         }catch (Exception e){
             LOGGER.log(Level.SEVERE, e.getMessage());
-            callback.onError(e);
+            Throwable throwable = new Throwable("Please check your internet connection :)");
+            callback.onError(throwable);
         }
     }
 }

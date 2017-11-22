@@ -85,6 +85,8 @@ public class ForecastPresenter implements ForecastContract.Presenter {
             @Override
             public void onError(Throwable e) {
                 evictUiCallback();
+                mView.hideProgressIndicator();
+                mView.showErrorMessage(e.getMessage());
             }
         });
     }
