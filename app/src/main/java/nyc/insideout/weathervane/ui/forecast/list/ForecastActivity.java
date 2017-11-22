@@ -46,7 +46,7 @@ public class ForecastActivity extends AppCompatActivity implements ForecastContr
         mRecyclerView = findViewById(R.id.recycler_view);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new ForecastAdapter();
+        mAdapter = new ForecastAdapter(getApplicationContext());
         mRecyclerView.setAdapter(mAdapter);
 
         mProgressBar = findViewById(R.id.progress_bar);

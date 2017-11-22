@@ -45,6 +45,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:' + project.ext.retrofitVersion
     implementation 'com.squareup.retrofit2:converter-gson:' + project.ext.retrofitVersion
 
+    // Picasso dependencies
+    implementation 'com.squareup.picasso:picasso:' + project.ext.picassoVersion
+
     // testing dependencies
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

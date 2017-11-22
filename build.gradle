@@ -29,6 +29,7 @@ allprojects {
         minSdkVersion = 17
         targetSdkVersion = 26
 
+        picassoVersion = "2.5.2"
         retrofitVersion = "2.3.0"
         daggerVersion = "2.13"
         supportLibraryVersion = "26.1.0"

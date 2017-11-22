@@ -1,6 +1,7 @@
 package nyc.insideout.weathervane.ui.forecast.list;
 
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,11 +10,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import nyc.insideout.weathervane.R;
 import nyc.insideout.weathervane.ui.model.ForecastViewModel;
@@ -22,6 +27,13 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
 
 
     private List<ForecastViewModel> forecastItems = new ArrayList<>();
+
+
+    private Context mContext;
+
+    public ForecastAdapter(Context context){
+        mContext = context;
+    }
 
     @Override
     public ForecastViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
@@ -40,6 +52,11 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         holder.forecastDesc.setText(forecastViewModel.desc);
         holder.forecastTempMax.setText(forecastViewModel.tempMax);
         holder.forecastTempMin.setText(forecastViewModel.tempMin);
+        Picasso.with(mContext)
+                .load(forecastViewModel.forecastIconUrl)
+                .placeholder(R.drawable.ic_weathervane)
+                .resize(50,50)
+                .into(holder.forecastImg);
     }
 
     @Override
