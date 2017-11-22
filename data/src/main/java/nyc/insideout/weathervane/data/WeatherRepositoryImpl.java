@@ -67,7 +67,7 @@ public class WeatherRepositoryImpl implements WeatherRepository {
                     mWeatherDataCache = mWeatherDataMapper.apiToCache(result);
                     mWeatherPreferences.setLastSearchLocation(result.getApiCity().getName());
                     RequestResult requestResult =
-                            new RequestResult(lastLocation, mWeatherDataMapper.cacheToDomain(mWeatherDataCache.values()));
+                            new RequestResult(result.getApiCity().getName(), mWeatherDataMapper.cacheToDomain(mWeatherDataCache.values()));
                     callback.onDataLoaded(requestResult);
                 }
 

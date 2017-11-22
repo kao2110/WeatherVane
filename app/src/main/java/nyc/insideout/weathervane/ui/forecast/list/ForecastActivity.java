@@ -125,6 +125,7 @@ public class ForecastActivity extends AppCompatActivity implements ForecastContr
 
     @Override
     public void showProgressIndicator() {
+        mToolbar.setSubtitle("");
         mProgressBar.setVisibility(View.VISIBLE);
         mProgressLabel.setVisibility(View.VISIBLE);
     }
