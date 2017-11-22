@@ -38,16 +38,16 @@ public class ForecastDataMapperImpl implements ForecastDataMapper{
         ForecastViewModel model = domainToForecastViewModel(forecastDetail);
         return new ForecastDetailViewModel(model.date, model.tempMax,
                 model.tempMin, forecastDetail.forecastId, forecastDetail.desc,
-                forecastDetail.humidity, forecastDetail.descDetail, model.forecastIconUrl);
+                forecastDetail.humidity, forecastDetail.descDetail, model.forecastIconUrl, forecastDetail.date);
     }
 
     private ForecastViewModel domainToForecastViewModel(Forecast forecast){
         // format values for display
-        String date = mDataFormatter.formatDate(forecast.date);
+        String dateText = mDataFormatter.formatDate(forecast.date);
         String tempMax = mDataFormatter.formatTemperature(forecast.tempMax);
         String tempMin = mDataFormatter.formatTemperature(forecast.tempMin);
         String iconUrl = mDataFormatter.formatImgUrl(forecast.forecastIconId);
 
-        return new ForecastViewModel(date, tempMax, tempMin, forecast.forecastId, forecast.desc, iconUrl);
+        return new ForecastViewModel(dateText, tempMax, tempMin, forecast.forecastId, forecast.desc, iconUrl, forecast.date);
     }
 }
