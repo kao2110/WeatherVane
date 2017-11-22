@@ -186,6 +186,8 @@ public class ForecastActivity extends AppCompatActivity implements ForecastContr
         mErrorText.setVisibility(View.INVISIBLE);
     }
 
+    // this touch listener is how the Activity lets the presenter know to that the Forecast
+    // details view is being requested.
     private void initRecyclerViewTouchListener(){
         RecyclerViewTouchListener listener = new RecyclerViewTouchListener(new GestureDetector(this,
                 new GestureDetector.SimpleOnGestureListener(){

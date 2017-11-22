@@ -18,6 +18,8 @@ import nyc.insideout.weathervane.domain.model.ForecastDetail;
 public class WeatherDataMapperImpl implements WeatherDataMapper{
 
 
+    // takes the bundled data retrieved from the api and map it to a list of individual items
+    // to prepare it for the UseCase or to be stored in a local database
     @Override
     public ArrayMap<Long, WeatherData> apiToCache(ApiWeatherData apiWeatherData) {
         ArrayMap<Long, WeatherData> arrayMap = new ArrayMap<>();
@@ -28,6 +30,7 @@ public class WeatherDataMapperImpl implements WeatherDataMapper{
         return arrayMap;
     }
 
+    // takes a collection of WeatherData items and returns a list modules used by the UseCases
     @Override
     public List<Forecast> cacheToDomain(Collection<WeatherData> data) {
         List<Forecast> forecastList = new ArrayList<>();
@@ -44,6 +47,7 @@ public class WeatherDataMapperImpl implements WeatherDataMapper{
         return forecastList;
     }
 
+    // takes a single data model and maps it to a domain module
     @Override
     public ForecastDetail cacheToDomainDetail(WeatherData weatherData) {
         return new ForecastDetail(weatherData.getDate(), weatherData.getTempMax(),
@@ -59,6 +63,5 @@ public class WeatherDataMapperImpl implements WeatherDataMapper{
                 apiForecastItem.getDeg(), apiForecastItem.getSpeed(), apiForecastItem.getDescription().get(0).getMain(),
                 apiForecastItem.getDescription().get(0).getDescription(),
                 apiForecastItem.getDescription().get(0).getId(), apiForecastItem.getDescription().get(0).getIcon());
-
     }
 }

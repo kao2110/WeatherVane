@@ -4,6 +4,9 @@ import nyc.insideout.weathervane.domain.model.ForecastDetail;
 import nyc.insideout.weathervane.domain.repository.WeatherRepository;
 import nyc.insideout.weathervane.domain.repository.WeatherRepository.DataRequestCallback;
 
+/**
+ * This UseCase is responsible for fetching the Forecast details be displayed.
+ */
 
 public class GetForecastDetailsUseCase implements UseCase<GetForecastDetailsUseCase.RequestParam,
         GetForecastDetailsUseCase.RequestResult> {
@@ -32,9 +35,9 @@ public class GetForecastDetailsUseCase implements UseCase<GetForecastDetailsUseC
     }
 
 
-    /*
-    * Class used to carry request parameters to GetForecastDetailsUseCase
-    */
+    /**
+     * This class is used to wrap the request parameters sent to this UseCase
+     */
     public static final class RequestParam implements UseCase.RequestParam{
         private final long date;
 
@@ -47,9 +50,9 @@ public class GetForecastDetailsUseCase implements UseCase<GetForecastDetailsUseC
         }
     }
 
-    /*
-    Class used to carry results from of request made by GetForecastUseCase
-    */
+    /**
+     * This class is used to wrap the results produced by execution of this UseCase
+     */
     public static final class RequestResult implements UseCase.RequestResult{
         private final ForecastDetail forecastDetail;
 

@@ -12,6 +12,11 @@ import nyc.insideout.weathervane.ui.mapper.DataFormatterImpl;
 import nyc.insideout.weathervane.ui.mapper.ForecastDataMapper;
 import nyc.insideout.weathervane.ui.mapper.ForecastDataMapperImpl;
 
+/**
+ * This module provieds the dependencies used by the ForecastDetailActivity.
+ * Each dependency is marked with @ActivityScope meaning they will live only as long as the
+ * component which they are associated with (i.e. they will die when the activity dies).
+ */
 @Module
 public class ForecastDetailActivityModule {
 

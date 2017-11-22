@@ -28,9 +28,16 @@ public class WeatherRepositoryImpl implements WeatherRepository {
 
     private static final Logger LOGGER = Logger.getLogger(WeatherServiceImpl.class.getName());
 
+    // service used to make network calls to api
     private WeatherService<ApiWeatherData> mWeatherService;
+
+    // used to store/retrieve last search location
     private WeatherPreferences mWeatherPreferences;
+
+    // used to map data retrieved from api to be stored by this module and to send data to domain data models
     private WeatherDataMapper mWeatherDataMapper;
+
+    // used to store recent search results to prevent unnecessary network calls
     private Map<Long, WeatherData> mWeatherDataCache;
 
     public WeatherRepositoryImpl(WeatherService weatherService, WeatherPreferences weatherPreferences,
@@ -61,6 +68,7 @@ public class WeatherRepositoryImpl implements WeatherRepository {
         } else{
             LOGGER.log(Level.INFO, "Data retrieved from network service");
 
+            // make a call to network service to fetch weather forecast data
             mWeatherService.fetchForecast(location, new WeatherService.WeatherServiceCallback<ApiWeatherData>() {
                 @Override
                 public void onDataLoaded(ApiWeatherData result) {

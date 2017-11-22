@@ -10,6 +10,8 @@ import nyc.insideout.weathervane.ui.forecast.list.ForecastActivity;
  * @ContributesAndroidInjector annotation can be used to provide instance of
  * ForecastActivity because the AndroidInjector<> SubComponent and
  * AndroidInjector.Factory<> Module have default implementations
+ *
+ * This module provides the Android Activities used in this application.
  */
 
 @Module

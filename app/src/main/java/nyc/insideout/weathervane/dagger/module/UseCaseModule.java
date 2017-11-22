@@ -8,6 +8,9 @@ import nyc.insideout.weathervane.domain.interactor.GetForecastDetailsUseCase;
 import nyc.insideout.weathervane.domain.interactor.GetForecastUseCase;
 import nyc.insideout.weathervane.domain.repository.WeatherRepository;
 
+/**
+ * This module provides UseCases
+ */
 @Module
 public class UseCaseModule {
 

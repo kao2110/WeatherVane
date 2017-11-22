@@ -18,6 +18,7 @@ public class ForecastDataMapperImpl implements ForecastDataMapper{
         mDataFormatter = formatter;
     }
 
+    // takes a list of domain models (Forecast) and maps the data to a list of view models (ForecastViewModel)
     @Override
     public List<ForecastViewModel> domainToForecastList(List<Forecast> forecastList) {
         List<ForecastViewModel> list = new ArrayList<>();
@@ -31,6 +32,7 @@ public class ForecastDataMapperImpl implements ForecastDataMapper{
         return list;
     }
 
+    // takes a domain model (ForecastDetail) and maps the data to a view model (ForecastDetailViewModel)
     @Override
     public ForecastDetailViewModel domainToDetailViewModel(ForecastDetail forecastDetail) {
         // ForecastDetailModel extends ForecastModel, create formatted ForecastModel then use those
@@ -41,6 +43,7 @@ public class ForecastDataMapperImpl implements ForecastDataMapper{
                 forecastDetail.humidity, forecastDetail.descDetail, model.forecastIconUrl, forecastDetail.date);
     }
 
+    // helper method
     private ForecastViewModel domainToForecastViewModel(Forecast forecast){
         // format values for display
         String dateText = mDataFormatter.formatDate(forecast.date);

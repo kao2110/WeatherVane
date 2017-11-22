@@ -7,9 +7,13 @@ import java.util.Locale;
 
 public class DataFormatterImpl implements DataFormatter {
 
-
+    // used to format the date of the forecast when displayed in a list
     private static final String DATE_FORMAT_SHORT = "EEE, MMM d";
+
+    // used to format the date of the forecast when displayed for details
     private static final String DATE_FORMAT_LONG = "EEEE, MMMM d";
+
+
     private static final String DEGREE_SYMBOL = "\u00B0";
     private static final String BASE_IMG_URL = "http://openweathermap.org/img/w/";
     private static final String IMG_URL_TYPE = ".png";
@@ -22,6 +26,10 @@ public class DataFormatterImpl implements DataFormatter {
         return formatDateHelper(time, DATE_FORMAT_SHORT);
     }
 
+    /*
+    * Returns a formatted String value of a unix timestamp.
+    * Ex: "Monday, June 9"
+    */
     public String formatDateLong(long time){
         return formatDateHelper(time, DATE_FORMAT_LONG);
     }

@@ -16,6 +16,9 @@ import nyc.insideout.weathervane.data.service.WeatherServiceImpl;
 import nyc.insideout.weathervane.domain.repository.WeatherRepository;
 import retrofit2.Retrofit;
 
+/**
+ *  This module provides the dependencies used by the WeatherRepositoryImpl
+ */
 @Module
 public class DataModule {
 

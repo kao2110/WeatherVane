@@ -11,6 +11,7 @@ import retrofit2.Retrofit;
 /**
  * Calls used to make calls to api.
  * With more time would add unit tests.
+ * Also would do more extensive error handling.
  */
 public class WeatherServiceImpl implements WeatherService<ApiWeatherData> {
 

@@ -17,8 +17,14 @@ import nyc.insideout.weathervane.domain.interactor.UseCase.RequestResult;
  */
 public class UseCaseExecutorImpl implements UseCaseExecutor{
 
+    // used to execute UseCase results on the main thread
     private final Handler mHandler;
+
+    // used to execute UseCases on a background thread
     private final Executor mExecutor;
+
+    // store the UiCallback in a map so it can be retrieved later to both return the results
+    // back to the main thread and to remove the reference held by his executor to prevent memory leaks
     private Map<String, UiCallback> mUiCallbackMap;
 
 
@@ -35,6 +41,7 @@ public class UseCaseExecutorImpl implements UseCaseExecutor{
 
         mUiCallbackMap.put(key, uiCallback);
 
+        // execute the UseCase on a background thread
         mExecutor.execute(new Runnable() {
             @Override
             public void run() {
@@ -97,7 +104,4 @@ public class UseCaseExecutorImpl implements UseCaseExecutor{
             }
         });
     }
-
-
-
 }

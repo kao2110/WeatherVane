@@ -13,11 +13,21 @@ import nyc.insideout.weathervane.ui.model.ForecastViewModel;
 
 public class ForecastPresenter implements ForecastContract.Presenter {
 
+    // used to execute UseCases off the main thread
     private UseCaseExecutor mUseCaseExecutor;
+
     private ForecastContract.View mView;
+
     private GetForecastUseCase mGetForecastUseCase;
+
+    // responsible for mapping data from the domain model to the view model
     private ForecastDataMapper mDataMapper;
+
+    // this value is used to evict the callback submitted to the UseCaseExecutor on the UseCase
+    // has completed or if the view is destroyed before the UseCase has completed execution.
     private String mUiCallbackCacheKey = "";
+
+    // this value is used to let the presenter know if it should update the view with data
     private boolean mViewIsActive = true;
 
     @Inject
@@ -59,7 +69,7 @@ public class ForecastPresenter implements ForecastContract.Presenter {
 
     @Override
     public void onViewDestroyed() {
-        // view is being destroyed so remove UiCallback created from UseCaseExecuter to prevent
+        // view is being destroyed so remove UiCallback created from UseCaseExecutor to prevent
         // possible memory leak.
         evictUiCallback();
     }
@@ -69,9 +79,14 @@ public class ForecastPresenter implements ForecastContract.Presenter {
         mView.showForecastDetails(date);
     }
 
+    // execute the UseCase and react accordingly
     private void getForecastItemList(String location){
         mUiCallbackCacheKey = location;
+
+        // create the object used to pass request parameters to the use case
         GetForecastUseCase.RequestParam param = new GetForecastUseCase.RequestParam(location);
+
+        // the UiCallback is parametrized with the expected Request Result object
         mUseCaseExecutor.executeUseCase(mGetForecastUseCase, param, location, new UseCaseExecutor.UiCallback<GetForecastUseCase.RequestResult>() {
             @Override
             public void onComplete(GetForecastUseCase.RequestResult result) {
@@ -91,6 +106,7 @@ public class ForecastPresenter implements ForecastContract.Presenter {
         });
     }
 
+    // map the data retrieved from the UseCase to the View Model class used to display the data
     private void displayForecastItems(String location, List<Forecast> items){
         List<ForecastViewModel> list = mDataMapper.domainToForecastList(items);
         mView.hideProgressIndicator();
@@ -100,6 +116,9 @@ public class ForecastPresenter implements ForecastContract.Presenter {
         mView.showForecastList(location, list);
     }
 
+    // this call is necessary to remove UiCallback created in the call to the UseCaseExecutor.
+    // because the callback is an anonymous class and the UseCaseExecutor is a singleton a memory
+    // leak will occur if the callback is not evicted from the cache used by the UseCaseExecutor.
     private void evictUiCallback(){
         mUseCaseExecutor.cancelUiCallback(mUiCallbackCacheKey);
         mUiCallbackCacheKey = "";

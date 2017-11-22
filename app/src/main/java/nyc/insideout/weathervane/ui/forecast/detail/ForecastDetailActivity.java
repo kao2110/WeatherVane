@@ -15,6 +15,9 @@ import dagger.android.AndroidInjection;
 import nyc.insideout.weathervane.R;
 import nyc.insideout.weathervane.ui.model.ForecastDetailViewModel;
 
+/**
+ * This class is responsible for displaying Forecast data details.
+ */
 public class ForecastDetailActivity extends AppCompatActivity implements ForecastDetailContract.View{
 
     // used to pass date via intent when starting this activity.
@@ -31,6 +34,8 @@ public class ForecastDetailActivity extends AppCompatActivity implements Forecas
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // This must be called before the call to super in order for dagger to inject dependencies
+        // before the objects they inject are used.
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forecast_details);
@@ -47,6 +52,9 @@ public class ForecastDetailActivity extends AppCompatActivity implements Forecas
         // With more time I would create a string resource rather than hardcode this value
         actionBar.setTitle("Forecast Details");
 
+        // Get the unix time stamp associated with the forecast item what was selected from the
+        // list of forecast items. This long value is used as the unique key to retrieve details
+        // from the repository
         Intent intent = getIntent();
         long unixDate = intent.getLongExtra(UNIX_DATE_VAL, 0);
         mPresenter.start(unixDate);

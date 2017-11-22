@@ -7,6 +7,10 @@ import nyc.insideout.weathervane.domain.model.Forecast;
 import nyc.insideout.weathervane.domain.repository.WeatherRepository;
 import nyc.insideout.weathervane.domain.repository.WeatherRepository.DataRequestCallback;
 
+/**
+ * This UseCase is responsible for fetching the list of Forecast items to be displayed in a list.
+ */
+
 public class GetForecastUseCase implements UseCase<GetForecastUseCase.RequestParam,
         GetForecastUseCase.RequestResult> {
 
@@ -16,6 +20,7 @@ public class GetForecastUseCase implements UseCase<GetForecastUseCase.RequestPar
         mWeatherRepository = weatherRepository;
     }
 
+    @Override
     public void execute(RequestParam params, final UseCaseCallback<RequestResult> callback){
         mWeatherRepository.getForecast(params.location, new DataRequestCallback<RequestResult>() {
             @Override
@@ -30,6 +35,10 @@ public class GetForecastUseCase implements UseCase<GetForecastUseCase.RequestPar
         });
     }
 
+
+    /**
+     * This class is used to wrap the request parameters sent to this UseCase
+     */
     public static final class RequestParam implements UseCase.RequestParam{
 
         private final String location;
@@ -43,6 +52,9 @@ public class GetForecastUseCase implements UseCase<GetForecastUseCase.RequestPar
         }
     }
 
+    /**
+     * This class is used to wrap the results produced by execution of this UseCase
+     */
     public static final class RequestResult implements UseCase.RequestResult{
 
         private final List<Forecast> forecastList;

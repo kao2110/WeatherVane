@@ -6,6 +6,9 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
+/**
+ * Interface used by Retrofit to define the api endpoint where data is retrieved.
+ */
 public interface WeatherApiEndpoints {
 
     @GET("forecast/daily?")

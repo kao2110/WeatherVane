@@ -14,6 +14,9 @@ import dagger.Provides;
 import nyc.insideout.weathervane.ui.UseCaseExecutor;
 import nyc.insideout.weathervane.ui.UseCaseExecutorImpl;
 
+/**
+ * This module provides an instance of the UseCaseExecutor used Presenter classes.
+ */
 @Module
 public class ExecutorModule {
 
