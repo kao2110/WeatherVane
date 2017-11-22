@@ -46,9 +46,9 @@ public class GetForecastUseCaseTest {
         mGetForecastUseCase = new GetForecastUseCase(mWeatherRepository);
 
         mForecastList =
-                Arrays.asList(new Forecast(123, 45, 32, 12, "Cloudy"),
-                        new Forecast(124, 46, 34, 13, "Sunny"),
-                        new Forecast(125, 47, 35, 14, "Rain"));
+                Arrays.asList(new Forecast(123, 45, 32, 12, "Cloudy", "04d"),
+                        new Forecast(124, 46, 34, 13, "Sunny", "04d"),
+                        new Forecast(125, 47, 35, 14, "Rain", "04d"));
 
         mLocation = "Ytown";
         mParam = new RequestParam(mLocation);

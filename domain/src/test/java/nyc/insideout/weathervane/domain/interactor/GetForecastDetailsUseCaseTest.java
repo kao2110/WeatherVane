@@ -43,7 +43,7 @@ public class GetForecastDetailsUseCaseTest {
     @Test
     public void whenDateIsValidThenReturnForecastDetail(){
         ForecastDetail detail = new ForecastDetail(mDate, 45,32,
-                102,"Cloudy", 54,"Partly Cloudy");
+                102,"Cloudy", 54,"Partly Cloudy", "04d");
 
         RequestResult result = new RequestResult(detail);
 

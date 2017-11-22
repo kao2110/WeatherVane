@@ -9,9 +9,9 @@ public class ForecastDetailViewModel extends ForecastViewModel {
     public final int humidity;
     public final String descDetail;
 
-    public ForecastDetailViewModel(final long date, final double tempMax, final double tempMin, final int forecastId,
-                                   final String desc, int humidity, String descDetail){
-        super(date, tempMax, tempMin, forecastId, desc);
+    public ForecastDetailViewModel(final String date, final String tempMax, final String tempMin, final int forecastId,
+                                   final String desc, int humidity, String descDetail, final String iconUrl){
+        super(date, tempMax, tempMin, forecastId, desc, iconUrl);
         this.humidity = humidity;
         this.descDetail = descDetail;
     }

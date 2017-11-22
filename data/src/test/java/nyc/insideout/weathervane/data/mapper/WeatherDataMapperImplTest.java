@@ -168,6 +168,7 @@ public class WeatherDataMapperImplTest {
                 apiForecastItem.getHumidity(), apiForecastItem.getApiTemperature().getMax(),
                 apiForecastItem.getApiTemperature().getMin(), apiForecastItem.getPressure(),
                 apiForecastItem.getDeg(), apiForecastItem.getSpeed(), apiForecastItem.getDescription().get(0).getMain(),
-                apiForecastItem.getDescription().get(0).getDescription(), apiForecastItem.getDescription().get(0).getId());
+                apiForecastItem.getDescription().get(0).getDescription(), apiForecastItem.getDescription().get(0).getId(),
+                apiForecastItem.getDescription().get(0).getIcon());
     }
 }

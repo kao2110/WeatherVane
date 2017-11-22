@@ -5,6 +5,8 @@ import dagger.Provides;
 import nyc.insideout.weathervane.ui.forecast.list.ForecastActivity;
 import nyc.insideout.weathervane.ui.forecast.list.ForecastContract;
 import nyc.insideout.weathervane.ui.forecast.list.ForecastPresenter;
+import nyc.insideout.weathervane.ui.mapper.DataFormatter;
+import nyc.insideout.weathervane.ui.mapper.DataFormatterImpl;
 import nyc.insideout.weathervane.ui.mapper.ForecastDataMapper;
 import nyc.insideout.weathervane.ui.mapper.ForecastDataMapperImpl;
 
@@ -13,8 +15,14 @@ public class ForecastActivityModule {
 
     @ActivityScope
     @Provides
-    ForecastDataMapper provideForecastDataMapper(){
-        return new ForecastDataMapperImpl();
+    DataFormatter provideDataFormatter(){
+        return new DataFormatterImpl();
+    }
+
+    @ActivityScope
+    @Provides
+    ForecastDataMapper provideForecastDataMapper(DataFormatter dataFormatter){
+        return new ForecastDataMapperImpl(dataFormatter);
     }
 
     @ActivityScope

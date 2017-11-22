@@ -7,8 +7,8 @@ public class ForecastDetail extends Forecast {
     public final String descDetail;
 
     public ForecastDetail(final long date, final double tempMax, final double tempMin, final int forecastId,
-                          final String desc, int humidity, String descDetail){
-        super(date, tempMax, tempMin, forecastId, desc);
+                          final String desc, int humidity, final String descDetail, final String iconId ){
+        super(date, tempMax, tempMin, forecastId, desc, iconId);
         this.humidity = humidity;
         this.descDetail = descDetail;
     }

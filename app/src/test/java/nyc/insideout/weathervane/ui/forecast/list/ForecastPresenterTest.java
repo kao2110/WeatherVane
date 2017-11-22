@@ -15,6 +15,7 @@ import nyc.insideout.weathervane.domain.interactor.GetForecastUseCase;
 import nyc.insideout.weathervane.domain.interactor.UseCase;
 import nyc.insideout.weathervane.domain.model.Forecast;
 import nyc.insideout.weathervane.ui.UseCaseExecutor;
+import nyc.insideout.weathervane.ui.mapper.DataFormatter;
 import nyc.insideout.weathervane.ui.mapper.ForecastDataMapper;
 import nyc.insideout.weathervane.ui.mapper.ForecastDataMapperImpl;
 
@@ -33,6 +34,9 @@ public class ForecastPresenterTest {
     @Mock
     private ForecastContract.View forecastView;
 
+    @Mock
+    private DataFormatter dataFormatter;
+
     @Captor
     private ArgumentCaptor<UseCaseExecutor.UiCallback<UseCase.RequestResult>> uiCallbackCaptor;
 
@@ -47,13 +51,15 @@ public class ForecastPresenterTest {
     private static final long DATE_2 = 1510881587;
     private static final int FORECAST_ID = 234;
     private static final int FORECAST_ID_2 = 234783;
+    public static final String FORECAST_ICON = "04d";
+    public static final String FORECAST_ICON2 = "14d";
     private static final String DESC = "cloudy";
     private static final String DESC_2 = "sunny";
 
     @Before
     public void setup(){
         MockitoAnnotations.initMocks(this);
-        ForecastDataMapper dataMapper = new ForecastDataMapperImpl();
+        ForecastDataMapper dataMapper = new ForecastDataMapperImpl(dataFormatter);
         forecastPresenter = new ForecastPresenter(getForecastUseCase, useCaseExecutor, dataMapper, forecastView);
     }
 
@@ -97,8 +103,8 @@ public class ForecastPresenterTest {
         // setup
         forecastPresenter.onSubmitForecastLocation(location);
         forecastPresenter.onViewActive();
-        Forecast item1 = new Forecast(DATE, TEMP_MAX, TEMP_MIN, FORECAST_ID, DESC);
-        Forecast item2 = new Forecast(DATE_2, TEMP_MAX_2, TEMP_MIN_2, FORECAST_ID_2, DESC_2);
+        Forecast item1 = new Forecast(DATE, TEMP_MAX, TEMP_MIN, FORECAST_ID, DESC, FORECAST_ICON);
+        Forecast item2 = new Forecast(DATE_2, TEMP_MAX_2, TEMP_MIN_2, FORECAST_ID_2, DESC_2, FORECAST_ICON2);
         List<Forecast> list = new ArrayList<>();
         list.add(item1);
         list.add(item2);

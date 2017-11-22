@@ -37,6 +37,8 @@ public class WeatherData {
     //id of forecast, used in display to match icon to forecast description
     private int forecastId;
 
+    private String forecastIconId;
+
     public WeatherData(){
 
     }
@@ -45,7 +47,7 @@ public class WeatherData {
     public WeatherData(final int cityId, final String cityName, final long date, final int humidity,
                        final double tempMax, final double tempMin, final double pressure,
                        final int windDirection, final double windSpeed, final String forecastDesc,
-                       final String forecastDescDetail, final int forecastId){
+                       final String forecastDescDetail, final int forecastId, final String iconId){
 
         this.cityId = cityId;
         this.cityName = cityName;
@@ -59,7 +61,7 @@ public class WeatherData {
         this.forecastDesc = forecastDesc;
         this.forecastDescDetail = forecastDescDetail;
         this.forecastId = forecastId;
-
+        this.forecastIconId = iconId;
     }
 
 
@@ -157,6 +159,14 @@ public class WeatherData {
 
     public void setForecastId(int forecastId) {
         this.forecastId = forecastId;
+    }
+
+    public String getForecastIconId() {
+        return forecastIconId;
+    }
+
+    public void setForecastIconId(String forecastIconId) {
+        this.forecastIconId = forecastIconId;
     }
 }
 

@@ -36,7 +36,8 @@ public class WeatherDataMapperImpl implements WeatherDataMapper{
         while(iterator.hasNext()){
             WeatherData weatherData = iterator.next();
             Forecast forecast = new Forecast(weatherData.getDate(), weatherData.getTempMax(),
-                    weatherData.getTempMin(), weatherData.getForecastId(), weatherData.getForecastDesc());
+                    weatherData.getTempMin(), weatherData.getForecastId(),
+                    weatherData.getForecastDesc(), weatherData.getForecastIconId());
             forecastList.add(forecast);
         }
 
@@ -47,7 +48,7 @@ public class WeatherDataMapperImpl implements WeatherDataMapper{
     public ForecastDetail cacheToDomainDetail(WeatherData weatherData) {
         return new ForecastDetail(weatherData.getDate(), weatherData.getTempMax(),
                 weatherData.getTempMin(), weatherData.getForecastId(), weatherData.getForecastDesc(),
-                weatherData.getHumidity(), weatherData.getForecastDescDetail());
+                weatherData.getHumidity(), weatherData.getForecastDescDetail(), weatherData.getForecastIconId());
     }
 
     private WeatherData apiToWeatherData(ApiCity apiCity, ApiForecastItem apiForecastItem){
@@ -56,7 +57,8 @@ public class WeatherDataMapperImpl implements WeatherDataMapper{
                 apiForecastItem.getHumidity(), apiForecastItem.getApiTemperature().getMax(),
                 apiForecastItem.getApiTemperature().getMin(), apiForecastItem.getPressure(),
                 apiForecastItem.getDeg(), apiForecastItem.getSpeed(), apiForecastItem.getDescription().get(0).getMain(),
-                apiForecastItem.getDescription().get(0).getDescription(), apiForecastItem.getDescription().get(0).getId());
+                apiForecastItem.getDescription().get(0).getDescription(),
+                apiForecastItem.getDescription().get(0).getId(), apiForecastItem.getDescription().get(0).getIcon());
 
     }
 }
