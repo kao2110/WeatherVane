@@ -118,7 +118,7 @@ public class ForecastPresenterTest {
 
         verify(forecastView).enableLocationEntry();
         verify(forecastView).hideProgressIndicator();
-        verify(forecastView).showForecastList(forecastDisplayCaptor.capture());
+        verify(forecastView).showForecastList(eq(location), forecastDisplayCaptor.capture());
         Assert.assertEquals(list.size(), forecastDisplayCaptor.getValue().size());
         verify(useCaseExecutor).cancelUiCallback(location);
     }

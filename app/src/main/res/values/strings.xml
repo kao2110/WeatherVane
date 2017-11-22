@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Weather Vane</string>
+    <string name="progress_label">Loading...</string>
+    <string name="search_label">Search Location</string>
 </resources>

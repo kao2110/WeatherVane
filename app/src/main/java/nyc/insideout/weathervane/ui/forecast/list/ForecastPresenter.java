@@ -1,8 +1,6 @@
 package nyc.insideout.weathervane.ui.forecast.list;
 
 
-import android.util.Log;
-
 import java.util.List;
 
 import javax.inject.Inject;
@@ -35,6 +33,8 @@ public class ForecastPresenter implements ForecastContract.Presenter {
     public void start(String location) {
         mView.disableLocationEntry();
         mView.showProgressIndicator();
+        mView.hideErrorMessage();
+        mView.hideRecyclerView();
         getForecastItemList(location);
     }
 
@@ -42,6 +42,8 @@ public class ForecastPresenter implements ForecastContract.Presenter {
     public void onSubmitForecastLocation(String location) {
         mView.disableLocationEntry();
         mView.showProgressIndicator();
+        mView.hideErrorMessage();
+        mView.hideRecyclerView();
         getForecastItemList(location);
     }
 
@@ -74,7 +76,7 @@ public class ForecastPresenter implements ForecastContract.Presenter {
             @Override
             public void onComplete(GetForecastUseCase.RequestResult result) {
                 if(mViewIsActive){
-                    displayForecastItems(result.getForecastList());
+                    displayForecastItems(result.getLocation(), result.getForecastList());
                     // remove old callback
                     evictUiCallback();
                 }
@@ -87,11 +89,13 @@ public class ForecastPresenter implements ForecastContract.Presenter {
         });
     }
 
-    private void displayForecastItems(List<Forecast> items){
+    private void displayForecastItems(String location, List<Forecast> items){
         List<ForecastViewModel> list = mDataMapper.domainToForecastList(items);
         mView.hideProgressIndicator();
         mView.enableLocationEntry();
-        mView.showForecastList(list);
+        mView.hideErrorMessage();
+        mView.showRecyclerView();
+        mView.showForecastList(location, list);
     }
 
     private void evictUiCallback(){

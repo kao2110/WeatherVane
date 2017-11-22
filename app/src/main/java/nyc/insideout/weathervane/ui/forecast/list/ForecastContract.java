@@ -32,8 +32,16 @@ public interface ForecastContract {
 
         void disableLocationEntry();
 
-        void showForecastList(List<ForecastViewModel> forecastItems);
+        void showForecastList(String location, List<ForecastViewModel> forecastItems);
 
         void showForecastDetails(long data);
+
+        void showErrorMessage(String text);
+
+        void hideErrorMessage();
+
+        void showRecyclerView();
+
+        void hideRecyclerView();
     }
 }
