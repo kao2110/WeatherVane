@@ -92,16 +92,19 @@ public class ForecastPresenter implements ForecastContract.Presenter {
             public void onComplete(GetForecastUseCase.RequestResult result) {
                 if(mViewIsActive){
                     displayForecastItems(result.getLocation(), result.getForecastList());
-                    // remove old callback
-                    evictUiCallback();
                 }
+                // remove old callback
+                evictUiCallback();
             }
 
             @Override
             public void onError(Throwable e) {
+                if(mViewIsActive){
+                    mView.hideProgressIndicator();
+                    mView.showErrorMessage(e.getMessage());
+                }
+                // remove old callback
                 evictUiCallback();
-                mView.hideProgressIndicator();
-                mView.showErrorMessage(e.getMessage());
             }
         });
     }

@@ -81,18 +81,19 @@ public class ForecastDetailPresenter implements ForecastDetailContract.Presenter
             public void onComplete(GetForecastDetailsUseCase.RequestResult result) {
                 if(mViewIsActive){
                     displayForecastDetails(result.getForecastDetail());
-                    // remove old callback
-                    evictUiCallback();
                 }
+                // remove old callback
+                evictUiCallback();
             }
 
             @Override
             public void onError(Throwable e) {
-                evictUiCallback();
                 if(mViewIsActive) {
                     mView.hideProgressIndicator();
                     mView.showErrorMessage(e.getMessage());
                 }
+                // remove old callback
+                evictUiCallback();
             }
         });
     }
