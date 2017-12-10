@@ -37,6 +37,10 @@ allprojects {
         leakCanaryVersion = "1.5.4"
         mockitoVersion = "2.12.0"
         robolectricVersion = "3.5.1"
+        hamcrestVersion = "1.3"
+        expressoVersion = "3.0.1"
+        testingSupportRulesVersion = "1.0.1"
+        testingSupportRunnerVersion = "1.0.1"
     }
 }
 
