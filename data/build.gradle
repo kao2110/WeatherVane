@@ -25,6 +25,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    // flavor dimension is required for product flavors.
+    // since there is only 1 flavor dimension there is no need to declare that each product flavor
+    // uses it. The same flavor dimension exist in all other Android modules in this project.
+    flavorDimensions 'dimen'
+
+    // product flavors 'prod' and 'mock' are differentiated to provide mock objects used for
+    // writing tests in a hermetic environment. The same product flavors exist in all other Android
+    // modules in this project.
+    productFlavors{
+        prod{}
+        mock{}
+    }
 }
 
 dependencies {
