@@ -16,6 +16,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    // flavor dimension is required for product flavors.
+    // since there is only 1 flavor dimension there is no need to declare that each product flavor
+    // uses it. The same flavor dimension exist in all other Android modules in this project.
+    flavorDimensions 'dimen'
+
+    // product flavors 'prod' and 'mock' are differentiated to provide mock objects used for
+    // writing tests in a hermetic environment. The same product flavors exist in all other Android
+    // modules in this project.
+    productFlavors{
+        prod{}
+        mock{}
+    }
 }
 
 dependencies {
@@ -50,8 +63,19 @@ dependencies {
 
     // testing dependencies
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     testImplementation 'org.mockito:mockito-core:' + project.ext.mockitoVersion
     testImplementation 'org.robolectric:robolectric:' + project.ext.robolectricVersion
+    testImplementation 'org.hamcrest:hamcrest-all:' + project.ext.hamcrestVersion
+
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test:rules:1.0.1'
+
+    // Espresso dependencies
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:' + project.ext.espressoVersion
+    androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:' + project.ext.espressoVersion
+    androidTestImplementation 'com.android.support.test.espresso:espresso-intents:' + project.ext.espressoVersion
+    implementation 'com.android.support.test.espresso.idling:idling-concurrent:' + project.ext.espressoVersion
+    androidTestImplementation 'com.android.support.test.espresso:espresso-idling-resource:' + project.ext.espressoVersion
+
 }
