@@ -71,11 +71,11 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test:rules:1.0.1'
 
-    // Expresso dependencies
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:' + project.ext.expressoVersion
-    androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:' + project.ext.expressoVersion
-    androidTestImplementation 'com.android.support.test.espresso:espresso-intents:' + project.ext.expressoVersion
-    androidTestImplementation 'com.android.support.test.espresso.idling:idling-concurrent:' + project.ext.expressoVersion
-    androidTestImplementation 'com.android.support.test.espresso:espresso-idling-resource:' + project.ext.expressoVersion
+    // Espresso dependencies
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:' + project.ext.espressoVersion
+    androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:' + project.ext.espressoVersion
+    androidTestImplementation 'com.android.support.test.espresso:espresso-intents:' + project.ext.espressoVersion
+    implementation 'com.android.support.test.espresso.idling:idling-concurrent:' + project.ext.espressoVersion
+    androidTestImplementation 'com.android.support.test.espresso:espresso-idling-resource:' + project.ext.espressoVersion
 
 }

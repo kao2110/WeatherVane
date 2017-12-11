@@ -1,6 +1,10 @@
 package nyc.insideout.weathervane.ui.forecast.list;
 
 
+import android.support.annotation.RestrictTo;
+import android.support.annotation.VisibleForTesting;
+import android.support.test.espresso.IdlingResource;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -8,6 +12,7 @@ import javax.inject.Inject;
 import nyc.insideout.weathervane.domain.interactor.GetForecastUseCase;
 import nyc.insideout.weathervane.domain.model.Forecast;
 import nyc.insideout.weathervane.ui.UseCaseExecutor;
+import nyc.insideout.weathervane.ui.UseCaseExecutorImpl;
 import nyc.insideout.weathervane.ui.mapper.ForecastDataMapper;
 import nyc.insideout.weathervane.ui.model.ForecastViewModel;
 
@@ -125,5 +130,15 @@ public class ForecastPresenter implements ForecastContract.Presenter {
     private void evictUiCallback(){
         mUseCaseExecutor.cancelUiCallback(mUiCallbackCacheKey);
         mUiCallbackCacheKey = "";
+    }
+
+    /*
+    * This method is necessary because the IdlingResources needs to be registered with
+    * Espresso in order for UI tests to stay in sync with background threads.
+    */
+    @RestrictTo(RestrictTo.Scope.TESTS)
+    public IdlingResource getCountingIdlingResource(){
+            UseCaseExecutorImpl executor = (UseCaseExecutorImpl)mUseCaseExecutor;
+            return executor.getCountingIdlingResource();
     }
 }

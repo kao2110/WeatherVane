@@ -1,6 +1,7 @@
 package nyc.insideout.weathervane.ui;
 
 import android.os.Handler;
+import android.support.test.espresso.idling.concurrent.IdlingThreadPoolExecutor;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +24,7 @@ import static org.mockito.Mockito.verify;
 public class UseCaseExecutorTest {
 
     @Mock
-    private Executor executor;
+    private IdlingThreadPoolExecutor executor;
 
     @Mock
     private UseCase usecase;
